@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeopardy</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="score team1">🟠 Equipo 1: <span id="score1">0</span></div>
+  <div class="score team2">🟢 Equipo 2: <span id="score2">0</span></div>
+
+  <h1>🎯 Jeopardy</h1>
+  <div class="board" id="board"></div>
+<div id="special-effect" class="hidden"></div>
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="close">&times;</span>
+      <p id="question-text"></p>
+	  <img id="question-image" class="hidden" style="max-width: 100%; max-height: 500px; margin-top: 10px;" />
+<video id="question-video" class="hidden" style="max-width: 100%; max-height: 300px; margin-top: 20px;" controls></video>
+
+      <p id="answer-text" class="hidden"><strong>Respuesta: </strong><span id="answer-content"></span></p>
+      <div id="show-answer">
+        <button onclick="showAnswer()">Mostrar Respuesta</button>
+      </div>
+      <div id="modal-buttons" class="hidden">
+        <button onclick="answer(true)">✅ Correcto</button>
+        <button onclick="answer(false)">❌ Incorrecto</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
