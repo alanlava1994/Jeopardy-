@@ -13,7 +13,7 @@ const questionVideo = document.getElementById("question-video");
         { text: "¿Qué cordillera separa España de Francia?", answer: "Los Pirineos" }
       ],
       "Caricaturas": [
-        { text: "¿Como se llama esta caricatura?", answer: "La vida moderna de Rocko", image:"https://i.ibb.co/WvDrqKY9/Screenshot-2025-04-30-214338.png" },
+        { text: "¿Como se llama esta caricatura?", answer: "La vida moderna de Rocko", image:"https://files.catbox.moe/d3sx59.png" },
         { text: "¿Cual es su nombre?", answer: "Spinelli", image:"https://www.okchicas.com/wp-content/uploads/2019/05/Personajes-femeninos-de-caricaturas-2.jpg" },
         { text: "¿Cual es su nombre?", answer: "Marvin el Marciano", image: "https://easydrawingart.com/wp-content/uploads/2023/07/12-marvin-the-martian-drawing-for-kids.jpg" },
         { text: "¿Cual es su nombre?", answer: "Clifford", image:"https://static.wikia.nocookie.net/kaijuwikia/images/3/34/Clifford_render.png/revision/latest?cb=20210622142506" },
