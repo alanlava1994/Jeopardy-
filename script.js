@@ -36,10 +36,10 @@ const questionVideo = document.getElementById("question-video");
         { text: "¿Cuánto es el 25% de 200?", answer: "50" },
         { text: "¿Cuál es el área de un triángulo con base de 10 cm y altura de 12 cm?", answer: "60 cm²" },
         { text: "Si duplicas un número y le sumas 4, el resultado es 18. ¿Cuál es el número?", answer: "7" },
-        { text: "¿Cuál es el siguiente número en la secuencia: 5, 11, 17, 23, ___?", answer: "29" },
         { text: "Si la suma de los ángulos interiores de un polígono es 720°, ¿cuántos lados tiene el polígono??", answer: " 6 lados (Hexágono)" },
         { text: "Si x = 3 y y = 12, ¿cuánto vale 2xy + y²?", answer: "216" },
         { text: "Que tienen en comun?", answer: "Son numeros Imaginarios", image:"https://files.catbox.moe/0hjgz4.png" },
+        { text: "¿Cuál es la formula general (Chicharronera)?", answer: "x = (-b ± √(b² - 4ac)) / (2a)" },
         { text: "¿Resuelve: 2x+5=3x−2", answer: "x=7" }
       ],
       "Música": [
@@ -58,7 +58,7 @@ const questionVideo = document.getElementById("question-video");
         { text: "¿Como se llama esta escultura de Miguel Angel?", answer: "El David", image:"https://www.infobae.com/resizer/v2/BXZEX7642VCLZEDGMIVPAPF4ZU.jpg?auth=3a3a46bb69ef8f104601c16b513531d15e99e22f1fdf701495bf7132244eb1ed&smart=true&width=992&height=558&quality=85" },
         { text: "¿Como se llama esta obra y quien la pinto?", answer: "La noche estrellada por Vincent van Gogh", image:"https://www.coahuilabibliotecas.gob.mx/images23/16474297505881.jpg" },
         { text: "¿Quien es el?", answer: "Nezahualcoyotl", image: "https://i.blogs.es/b3b0cd/billete_-100_mexico_tipo_d_anverso/1366_2000.jpg" },
-        { text: "¿En donde nació Frida Kahlo", answer: "Coyoacán, Mexico City" },
+        { text: "¿Quien es el Autor/a de la siguiente obra", answer: "Remedios Varo", image:"https://expresionenmovimientoblog.wordpress.com/wp-content/uploads/2013/10/lallamada.jpg" },
         { text: "¿De que marca es este logotipo?", answer: "Maserati", image:"https://i.pinimg.com/736x/f4/97/e5/f497e55fe7447ae1d2a103ea26d72558.jpg" },
         { text: "¿Cómo se llama el primer álbum de estudio de Shakira, lanzado cuando tenía solo 13 años?", answer: "Magia (1990)" },
         { text: "¿En que estado se encuentra y como se llama el siguiente monumento?", answer: "Monte Rushmore,Dakota del Sur", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Mount_Rushmore_detail_view_%28100MP%29.jpg/2880px-Mount_Rushmore_detail_view_%28100MP%29.jpg"}
