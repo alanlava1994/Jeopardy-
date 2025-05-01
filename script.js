@@ -48,10 +48,10 @@ const questionVideo = document.getElementById("question-video");
         { text: "Completa la cancion:", answer:"Después de ocho horas de andar laborando Desesperanza se siente en el hogar", video: "https://files.catbox.moe/vlnpg6.mp4" },
         { text: "Completa la cancion", answer: "A veces creo oír que me necesitas Y alguna que otra vez siento tu mirar", video:"https://files.catbox.moe/tulzch.mp4" },
         { text: "Completa la cancion", answer: "No, no me voy a morir No voy a cambiar solo porque no estás aquí", video:"https://files.catbox.moe/z7ngqs.mp4" },
-        { text: "Completa la cancion", answer: "Me va a buscar en un futuro Una edición especial", video:"https://files.catbox.moe/ojzstv.mp4" },
+        { text: "Completa la cancion", answer: "Ya no sé disimular Llamo y no te puedo hablar Tu recuerdo no se va, no se va, no se va", video:"https://files.catbox.moe/msxc7q.mp4" },
         { text: "Completa la cancion", answer: "Gimme, gimme, gimme a man after midnight Won't somebody help me chase these shadows away?", video:"https://files.catbox.moe/y6ilku.mp4" },
 		{ text: "Completa la cancion", answer: "Tres millone' y pico en las prenda' No hace falta que me comprendan", video:"https://files.catbox.moe/hh625v.mp4" }, 
-        { text: "Completa la cancion", answer: "Yo sé que el viento va y viene lejos Mis penas se llevará de veras", video: "https://files.catbox.moe/7apbzt.mp4"}
+        { text: "Completa la cancion", answer: "Yeah, is it too late now to say sorry? Cause I'm missing more than just your body", video: "https://files.catbox.moe/h7cn49.mp4"}
       ],
       "Cultura General": [
         { text: "¿Cual es el nombre del actor de la pelicula de interestelar?", answer: "Matthew McConaughey", image: "https://www.funcinema.com.ar/wp-content/uploads/2024/12/interestelar.jpg" },
