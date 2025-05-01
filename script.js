@@ -19,7 +19,7 @@ const questionVideo = document.getElementById("question-video");
         { text: "¿Cual es su nombre?", answer: "Clifford", image:"https://files.catbox.moe/pok19i.png" },
         { text: "¿Cual es su nombre?", answer: "Oliver Atom" ,image:"https://files.catbox.moe/ky6stb.png"},
         { text: "¿Cual es el nombre de esta espatula?", answer: "Espátula Aedrodinamica con Accesorios Sinteticos y Palanca Turbo", image:"https://files.catbox.moe/qbi10c.png" },
-        { text: "¿Cual es el nombre de estos 3 pokemon?", answer: "Sceptile, Magcargo, Hariyama, Sableye, Pelipper, Sandslash", image:"https://files.catbox.moe/xs6ahs.png" },
+        { text: "¿Cual es el nombre de estos 6 pokemon?", answer: "Sceptile, Magcargo, Hariyama, Sableye, Pelipper, Sandslash", image:"https://files.catbox.moe/xs6ahs.png" },
         { text: "¿En el episodio El deseo secreto, Timmy desea en secreto no envejecer nunca. ¿Cuántos años pasan antes de que se den cuenta", answer: "50 años", image:"https://files.catbox.moe/66sia0.png" }
       ],
       "Ciudad Juárez": [
@@ -39,7 +39,7 @@ const questionVideo = document.getElementById("question-video");
         { text: "¿Cuál es el siguiente número en la secuencia: 5, 11, 17, 23, ___?", answer: "29" },
         { text: "Si la suma de los ángulos interiores de un polígono es 720°, ¿cuántos lados tiene el polígono??", answer: " 6 lados (Hexágono)" },
         { text: "Si x = 3 y y = 12, ¿cuánto vale 2xy + y²?", answer: "216" },
-        { text: "Que tienen en comun?", answer: "Son numeros Imaginarios", image:"https://i.ibb.co/MxdS9zhT/Screenshot-2025-04-29-234331.png" },
+        { text: "Que tienen en comun?", answer: "Son numeros Imaginarios", image:"https://files.catbox.moe/0hjgz4.png" },
         { text: "¿Resuelve: 2x+5=3x−2", answer: "x=7" }
       ],
       "Música": [
