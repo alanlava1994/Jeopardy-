@@ -14,13 +14,13 @@ const questionVideo = document.getElementById("question-video");
       ],
       "Caricaturas": [
         { text: "¿Como se llama esta caricatura?", answer: "La vida moderna de Rocko", image:"https://files.catbox.moe/d3sx59.png" },
-        { text: "¿Cual es su nombre?", answer: "Spinelli", image:"https://www.okchicas.com/wp-content/uploads/2019/05/Personajes-femeninos-de-caricaturas-2.jpg" },
+        { text: "¿Cual es su nombre?", answer: "Spinelli", image:"https://files.catbox.moe/glzxij.png" },
         { text: "¿Cual es su nombre?", answer: "Marvin el Marciano", image: "https://easydrawingart.com/wp-content/uploads/2023/07/12-marvin-the-martian-drawing-for-kids.jpg" },
-        { text: "¿Cual es su nombre?", answer: "Clifford", image:"https://static.wikia.nocookie.net/kaijuwikia/images/3/34/Clifford_render.png/revision/latest?cb=20210622142506" },
-        { text: "¿Cual es su nombre?", answer: "Oliver Atom" ,image:"https://static.wikia.nocookie.net/super-campeones-info/images/3/3a/CT-Road-to-2002-Ep-28-019.jpg/revision/latest?cb=20190409023531&path-prefix=es"},
-        { text: "¿Cual es el nombre de esta espatula?", answer: "Espátula Aedrodinamica con Accesorios Sinteticos y Palanca Turbo", image:"https://static.wikia.nocookie.net/caricaturas/images/7/7e/Se_Busca_Ayuda_%2849%29.png/revision/latest?cb=20120419011609&path-prefix=es" },
-        { text: "¿Cual es el nombre de estos 3 pokemon?", answer: "Clefairy, Wynaut y Rattata", image:"https://i.ibb.co/d49B61vX/Screenshot-2025-04-30-002410.png" },
-        { text: "¿En el episodio El deseo secreto, Timmy desea en secreto no envejecer nunca. ¿Cuántos años pasan antes de que se den cuenta", answer: "50 años", image:"https://static.wikia.nocookie.net/series/images/9/9e/Padrinos-magicos.jpg/revision/latest?cb=20121211024502&path-prefix=es" }
+        { text: "¿Cual es su nombre?", answer: "Clifford", image:"https://files.catbox.moe/pok19i.png" },
+        { text: "¿Cual es su nombre?", answer: "Oliver Atom" ,image:"https://files.catbox.moe/ky6stb.png"},
+        { text: "¿Cual es el nombre de esta espatula?", answer: "Espátula Aedrodinamica con Accesorios Sinteticos y Palanca Turbo", image:"https://files.catbox.moe/qbi10c.png" },
+        { text: "¿Cual es el nombre de estos 3 pokemon?", answer: "Sceptile, Magcargo, Hariyama, Sableye, Pelipper, Sandslash", image:"https://files.catbox.moe/xs6ahs.png" },
+        { text: "¿En el episodio El deseo secreto, Timmy desea en secreto no envejecer nunca. ¿Cuántos años pasan antes de que se den cuenta", answer: "50 años", image:"https://files.catbox.moe/66sia0.png" }
       ],
       "Ciudad Juárez": [
         { text: "¿En donde se encuentra la siguiente escultura?", answer: "Plaza del Mariachi", image: "https://shorturl.at/aMsLt" },
