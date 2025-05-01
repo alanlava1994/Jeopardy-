@@ -96,7 +96,10 @@
   max-height: 70vh;  /* no excede el 70% de la altura de la ventana */
   margin-top: 20px;
 }
-
+#p {
+  margin-block-start: 10px;       
+  margin-block-end: 10px;           
+}
 #show-answer button:hover {
   background-color: #00b8cc;
   transform: scale(1.1);
