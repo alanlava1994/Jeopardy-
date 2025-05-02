@@ -55,7 +55,7 @@ const questionVideo = document.getElementById("question-video");
       ],
       "Cultura General": [
         { text: "¿Cual es el nombre del actor de la pelicula de interestelar?", answer: "Matthew McConaughey", image: "https://www.funcinema.com.ar/wp-content/uploads/2024/12/interestelar.jpg" },
-        { text: "¿Como se llama esta escultura de Miguel Angel?", answer: "El David", image:"https://www.infobae.com/resizer/v2/BXZEX7642VCLZEDGMIVPAPF4ZU.jpg?auth=3a3a46bb69ef8f104601c16b513531d15e99e22f1fdf701495bf7132244eb1ed&smart=true&width=992&height=558&quality=85" },
+        { text: "¿Como se llama esta carta de Yu-Gi-Oh!?", answer: "Kuriboh", image:"https://files.catbox.moe/4utnvb.png" },
         { text: "¿Como se llama esta obra y quien la pinto?", answer: "La noche estrellada por Vincent van Gogh", image:"https://www.coahuilabibliotecas.gob.mx/images23/16474297505881.jpg" },
         { text: "¿Quien es el?", answer: "Nezahualcoyotl", image: "https://i.blogs.es/b3b0cd/billete_-100_mexico_tipo_d_anverso/1366_2000.jpg" },
         { text: "¿Quien es el Autor/a de la siguiente obra", answer: "Remedios Varo", image:"https://expresionenmovimientoblog.wordpress.com/wp-content/uploads/2013/10/lallamada.jpg" },
