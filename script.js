@@ -65,145 +65,248 @@
     ]
   };
   
-  const board = document.getElementById("board");
-  const modal = document.getElementById("modal");
-  const questionText = document.getElementById("question-text");
-  const answerText = document.getElementById("answer-text");
-  const answerContent = document.getElementById("answer-content");
-  const showAnswerButton = document.getElementById("show-answer");
-  const modalButtons = document.getElementById("modal-buttons");
-  const close = document.getElementById("close");
-  let timerDuration = 23; // ⏱️ segundos ajustables
-  let timerInterval;
-  const timerDisplay = document.getElementById("timer");
-  
-  let currentCategory = null;
-  let currentIndex = null;
-  let currentValue = 0;
-  let currentCell = null;
-  let currentTeam = 1;
-  const score1 = document.getElementById("score1");
-  const score2 = document.getElementById("score2");
-  
-  function createBoard() {
-    categories.forEach(category => {
-      const header = document.createElement("div");
-      header.classList.add("cell");
-      header.textContent = category;
-      header.style.cursor = "default";
-      header.style.backgroundColor = "var(--disabled)";
-      board.appendChild(header);
-    });
-    
-    for (let i = 0; i < 8; i++) {
-      categories.forEach(category => {
-        const cell = document.createElement("div");
-        cell.classList.add("cell");
-        const value = (i + 1) * 100;
-        cell.textContent = `${value}`;
-        cell.addEventListener("click", () => {
-          if (!cell.classList.contains("used")) {
-            showQuestion(category, i, value, cell);
-          }
-        });
-        board.appendChild(cell);
-      });
-    }
-  }
-  
-  function showQuestion(category, index, value, cell) {
-    currentCategory = category;
-    currentIndex = index;
-    currentValue = value;
-    currentCell = cell;
-    
-    const question = questions[category][index];
-    questionText.textContent = question.text;
-    answerContent.textContent = question.answer;
-    if (question.special) {
-      document.querySelector(".modal-content").style.backgroundColor = "red";  // Cambia el fondo a rojo
-    } else {
-      document.querySelector(".modal-content").style.backgroundColor = "#DCDCDC";  // Restaura el fondo original
-    }
-    
-    if (question.image) {
-      questionImage.src = question.image;
-      questionImage.classList.remove("hidden");
-      
-      questionVideo.classList.add("hidden");
-      questionVideo.src = "";
-    } else if (question.video) {
-      questionVideo.src = question.video;
-      questionVideo.classList.remove("hidden");
-      
-      questionImage.classList.add("hidden");
-      questionImage.src = "";
-    } else {
-      questionImage.classList.add("hidden");
-      questionImage.src = "";
-      questionVideo.classList.add("hidden");
-      questionVideo.src = "";
-    }
-    answerText.classList.add('hidden');
-    showAnswerButton.classList.remove('hidden');
-    modalButtons.classList.add('hidden');
-    modal.classList.remove("hidden");
-    startTimer();
-  }
-  
-  function showAnswer() {
-    stopTimer();
-    answerText.classList.remove('hidden');
-    showAnswerButton.classList.add('hidden');
-    modalButtons.classList.remove('hidden');
-  }
-  
-  function answer(isCorrect) {
-    if (isCorrect) {
-      if (currentTeam === 1) {
-        score1.textContent = parseInt(score1.textContent) + currentValue;
-      } else {
-        score2.textContent = parseInt(score2.textContent) + currentValue;
-      }
-    }
-    currentTeam = currentTeam === 1 ? 2 : 1;
-    currentCell.classList.add("used");
-    modal.classList.add("hidden");
-  }
-  
-  close.addEventListener("click", () => {
-    modal.classList.add("hidden");
-    
+ 
+
+/* --- Elementos DOM --- */
+const board = document.getElementById("board");
+const modal = document.getElementById("modal");
+const questionText = document.getElementById("question-text");
+const answerText = document.getElementById("answer-text");
+const answerContent = document.getElementById("answer-content");
+const modalButtons = document.getElementById("modal-buttons");
+const close = document.getElementById("close");
+
+const timerDisplay = document.getElementById("timer");
+const stealBanner = document.getElementById("steal-banner");
+const stealUI = document.getElementById("steal-ui");
+const stealYesBtn = document.getElementById("steal-yes");
+const stealNoBtn = document.getElementById("steal-no");
+
+/* --- Estado --- */
+let currentCategory = null;
+let currentIndex = null;
+let currentValue = 0;
+let currentCell = null;
+let currentTeam = 1;
+const score1 = document.getElementById("score1");
+const score2 = document.getElementById("score2");
+
+/* --- Timer --- */
+let timerDuration = 10;
+let timerInterval;
+
+/* --- Robo --- */
+let stealPending = false;
+let stealingTeam = null;
+
+/* --- Crear tablero --- */
+function createBoard() {
+  categories.forEach(category => {
+    const header = document.createElement("div");
+    header.classList.add("cell");
+    header.textContent = category;
+    header.style.cursor = "default";
+    header.style.backgroundColor = "var(--disabled)";
+    board.appendChild(header);
   });
-  
-  function startTimer() {
-    clearInterval(timerInterval);
-    let timeLeft = timerDuration;
+
+  for (let i = 0; i < 8; i++) {
+    categories.forEach(category => {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      const value = (i + 1) * 100;
+      cell.textContent = `${value}`;
+      cell.addEventListener("click", () => {
+        if (!cell.classList.contains("used")) {
+          showQuestion(category, i, value, cell);
+        }
+      });
+      board.appendChild(cell);
+    });
+  }
+}
+
+/* --- Mostrar pregunta --- */
+function showQuestion(category, index, value, cell) {
+  currentCategory = category;
+  currentIndex = index;
+  currentValue = value;
+  currentCell = cell;
+  updateActiveTeam();
+
+  const question = questions[category][index];
+  questionText.textContent = question.text;
+  answerContent.textContent = question.answer;
+
+  if (question.special) {
+    document.querySelector(".modal-content").style.backgroundColor = "red";
+  } else {
+    document.querySelector(".modal-content").style.backgroundColor = "#DCDCDC";
+  }
+
+  if (question.image) {
+    questionImage.src = question.image;
+    questionImage.classList.remove("hidden");
+    questionVideo.classList.add("hidden");
+  } else if (question.video) {
+    questionVideo.src = question.video;
+    questionVideo.classList.remove("hidden");
+    questionImage.classList.add("hidden");
+  } else {
+    questionImage.classList.add("hidden");
+    questionVideo.classList.add("hidden");
+  }
+
+  // Reset
+  hideStealUI();
+  answerText.classList.add('hidden');
+  modalButtons.classList.remove('hidden');
+  modal.classList.remove("hidden");
+
+  // Inicia el temporizador
+  startTimer();
+}
+
+/* --- Botones Correcto/Incorrecto --- */
+function confirmAnswer(isCorrect) {
+  stopTimer();
+
+  // bloquear botones para evitar doble click
+  modalButtons.classList.add('hidden');
+
+  if (isCorrect) {
+    // Si acertaron: mostrar la respuesta, sumar puntos y mostrar OK.
+    answerText.classList.remove('hidden');
+
+    if (currentTeam === 1) score1.textContent = parseInt(score1.textContent) + currentValue;
+    else score2.textContent = parseInt(score2.textContent) + currentValue;
+
+    showOkButton();
+  } else {
+    // Si fallaron: NO mostrar la respuesta aún. Iniciar flujo de robo.
+    startStealFlow();
+  }
+}
+
+
+/* --- Flujo de robo --- */
+function startStealFlow() {
+  stealPending = true;
+  stealingTeam = currentTeam === 1 ? 2 : 1;
+
+  stealBanner.classList.remove('hidden');
+  stealUI.classList.remove('hidden');
+  stopTimer();
+
+  const stealTextElem = document.getElementById('steal-text');
+  stealTextElem.textContent = `ROBO DE PUNTOS — Turno del Equipo ${stealingTeam}`;
+}
+
+/* --- Resultado del robo --- */
+stealYesBtn.addEventListener('click', () => handleStealResult(true));
+stealNoBtn.addEventListener('click', () => handleStealResult(false));
+
+function handleStealResult(wasCorrect) {
+  if (!stealPending) return;
+
+  // Si el equipo que robó acertó, sumar puntos a ese equipo
+  if (wasCorrect) {
+    if (stealingTeam === 1) score1.textContent = parseInt(score1.textContent) + currentValue;
+    else score2.textContent = parseInt(score2.textContent) + currentValue;
+  }
+
+  // finalizar estado de robo y ocultar UI de robo
+  stealPending = false;
+  hideStealUI();
+
+  // Mostrar la respuesta AHORA (independientemente de wasCorrect)
+  answerText.classList.remove('hidden');
+
+  // Mostrar el botón OK para cerrar y marcar la celda
+  showOkButton();
+}
+
+/* --- Botón OK para cerrar --- */
+function showOkButton() {
+  // Si ya existe un OK en el modal, no creamos otro
+  const existing = document.getElementById('ok-btn');
+    updateActiveTeam();
+  if (existing) return;
+
+  const okBtn = document.createElement('button');
+  okBtn.id = 'ok-btn';
+  okBtn.textContent = "OK";
+  okBtn.style.marginTop = "20px";
+  okBtn.style.fontSize = "1.5rem";
+  okBtn.style.padding = "10px 20px";
+  okBtn.onclick = () => {
+    // limpiar estado
+    stopTimer();
+    hideStealUI();
+    stealPending = false;
+
+    modal.classList.add('hidden');
+    currentCell.classList.add("used");
+    currentTeam = currentTeam === 1 ? 2 : 1; // pasar turno
+
+    // remover el botón OK para futuras preguntas
+    okBtn.remove();
+  };
+
+  document.querySelector(".modal-content").appendChild(okBtn);
+}
+
+/* --- Utilidades --- */
+function hideStealUI() {
+  stealBanner.classList.add('hidden');
+  stealUI.classList.add('hidden');
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  let timeLeft = timerDuration;
+  timerDisplay.textContent = `⏱️ ${timeLeft}`;
+  timerDisplay.style.color = "green";
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
     timerDisplay.textContent = `⏱️ ${timeLeft}`;
-    timerDisplay.style.color = "green"; // Empieza verde
-    
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      timerDisplay.textContent = `⏱️ ${timeLeft}`;
-      
-      // Cambia de color gradualmente
-      if (timeLeft <= 3) {
-        timerDisplay.style.color = "red";
-      } else if (timeLeft <= 6) {
-        timerDisplay.style.color = "orange";
-      } else {
-        timerDisplay.style.color = "green";
-      }
-      
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-      }
-    }, 1000);
+
+    if (timeLeft <= 3) timerDisplay.style.color = "red";
+    else if (timeLeft <= 6) timerDisplay.style.color = "orange";
+    else timerDisplay.style.color = "green";
+
+    if (timeLeft <= 0) clearInterval(timerInterval);
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
+/* --- Cerrar modal manualmente --- */
+close.addEventListener("click", () => {
+  stopTimer();
+  hideStealUI();
+  stealPending = false;
+  modal.classList.add("hidden");
+});
+function updateActiveTeam() {
+  const team1 = document.querySelector('.team1');
+  const team2 = document.querySelector('.team2');
+
+  if (currentTeam === 1) {
+    team1.style.opacity = 1;   // 🔆 Equipo 1 activo
+    team2.style.opacity = 0.5; // 🔅 Equipo 2 en espera
+    team1.style.transform = "scale(1.1)";
+    team2.style.transform = "scale(1)";
+  } else {
+    team1.style.opacity = 0.5;
+    team2.style.opacity = 1;
+    team2.style.transform = "scale(1.1)";
+    team1.style.transform = "scale(1)";
   }
-  
-  function stopTimer() {
-    clearInterval(timerInterval);
-  }
-  
-  createBoard();
-  
+}
+
+/* --- Inicializar tablero --- */
+createBoard();

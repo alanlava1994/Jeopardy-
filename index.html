@@ -10,27 +10,45 @@
   <div class="score team1">🟠 Equipo 1: <span id="score1">0</span></div>
   <div class="score team2">🟢 Equipo 2: <span id="score2">0</span></div>
 
-  <h1>🎯 Jeopardy</h1>
+  <h1 style="margin-top: 5px; font-size: 5rem;">🎯 Jeopardy</h1>
   <div class="board" id="board"></div>
-<div id="special-effect" class="hidden"></div>
+  <div id="special-effect" class="hidden"></div>
+
   <div id="modal" class="modal hidden">
     <div class="modal-content">
       <span id="close">&times;</span>
-      <p id="question-text" style="margin: 10px;"></p>
-    <p id="timer" style="font-size: 4rem; font-weight: bold; margin: 1px 0;">⏱️ 10</p>
-	  <img id="question-image" class="hidden" style="max-width: 100%; max-height: 500px; margin-top: 10px;" />
-<video id="question-video" class="hidden" style="max-width: 100%; max-height: 300px; margin-top: 20px;" controls></video>
 
-     <p id="answer-text" class="hidden" style="margin-block-start: 10px; margin-block-end: 10px;">
-  <strong>Respuesta: </strong><span id="answer-content"  style="color: #0a6cec;"></span>
-</p>
-      <div id="show-answer">
-        <button onclick="showAnswer()">Mostrar Respuesta</button>
-      </div>
+      <p id="question-text" style="margin: 10px;"></p>
+
+      <!-- Timer -->
+      <p id="timer" style="font-size: 4rem; font-weight: bold; margin: 1px 0;">⏱️ 10</p>
+
+      <img id="question-image" class="hidden" style="max-width: 100%; max-height: 500px; margin-top: 10px;" />
+      <video id="question-video" class="hidden" style="max-width: 100%; max-height: 300px; margin-top: 20px;" controls></video>
+
+      <p id="answer-text" class="hidden" style="margin-block-start: 10px; margin-block-end: 10px;">
+        <strong>Respuesta: </strong><span id="answer-content"></span>
+      </p>
+ 
+
+      <!-- Botones para el equipo que responde (se muestran después de mostrar la respuesta) -->
       <div id="modal-buttons" class="hidden">
-        <button onclick="answer(true)">✅ Correcto</button>
-        <button onclick="answer(false)">❌ Incorrecto</button>
+        <!-- Ahora llamamos a initialAnswer para distinguir flujo inicial -->
+        <button onclick="confirmAnswer(true)">✅ Correcto</button>
+        <button onclick="confirmAnswer(false)">❌ Incorrecto</button>
       </div>
+
+      <!-- Banner y UI para ROBO DE PUNTOS -->
+      <div id="steal-banner" class="hidden" style="margin-top: 20px; font-size: 2.2rem; font-weight: bold;">
+        ⚠️ <span id="steal-text">ROBO DE PUNTOS</span>
+      </div>
+
+      <div id="steal-ui" class="hidden" style="margin-top: 12px;">
+        <p style="font-size:1.8rem; margin-bottom:8px;">¿El equipo contrario respondió correctamente?</p>
+        <button id="steal-yes" style="padding:10px 20px; font-size:1.4rem; margin-right:8px;">✅ Correcto</button>
+        <button id="steal-no" style="padding:10px 20px; font-size:1.4rem;">❌ Incorrecto</button>
+      </div>
+
     </div>
   </div>
 
