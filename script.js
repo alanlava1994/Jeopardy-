@@ -73,7 +73,7 @@
   const showAnswerButton = document.getElementById("show-answer");
   const modalButtons = document.getElementById("modal-buttons");
   const close = document.getElementById("close");
-  let timerDuration = 15; // ⏱️ segundos ajustables
+  let timerDuration = 20; // ⏱️ segundos ajustables
   let timerInterval;
   const timerDisplay = document.getElementById("timer");
   
@@ -152,6 +152,7 @@
   }
   
   function showAnswer() {
+    stopTimer();
     answerText.classList.remove('hidden');
     showAnswerButton.classList.add('hidden');
     modalButtons.classList.remove('hidden');
@@ -172,7 +173,7 @@
   
   close.addEventListener("click", () => {
     modal.classList.add("hidden");
-    stopTimer();
+    
   });
   
   function startTimer() {
