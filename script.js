@@ -73,7 +73,7 @@
   const showAnswerButton = document.getElementById("show-answer");
   const modalButtons = document.getElementById("modal-buttons");
   const close = document.getElementById("close");
-  let timerDuration = 20; // ⏱️ segundos ajustables
+  let timerDuration = 23; // ⏱️ segundos ajustables
   let timerInterval;
   const timerDisplay = document.getElementById("timer");
   
