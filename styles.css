@@ -47,7 +47,7 @@
     .board {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(9, 1fr);
+      grid-template-rows: repeat(8, 1fr);
       gap: 6px;
       width: 100vw;
       height: 85vh;
@@ -126,6 +126,9 @@
       padding: 30px;
       border-radius: 12px;
       max-width: 1200px;
+      max-height: calc(100vh - 40px);
+      box-sizing: border-box;
+      overflow-y: auto;
       text-align: center;
       font-size: 3.5rem;
 	   font-weight: bold;

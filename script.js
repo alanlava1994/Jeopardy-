@@ -75,6 +75,7 @@ const answerText = document.getElementById("answer-text");
 const answerContent = document.getElementById("answer-content");
 const modalButtons = document.getElementById("modal-buttons");
 const close = document.getElementById("close");
+const modalContent = document.querySelector(".modal-content");
 
 const timerDisplay = document.getElementById("timer");
 const stealBanner = document.getElementById("steal-banner");
@@ -110,7 +111,7 @@ function createBoard() {
     board.appendChild(header);
   });
 
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 7; i++) {
     categories.forEach(category => {
       const cell = document.createElement("div");
       cell.classList.add("cell");
@@ -138,11 +139,7 @@ function showQuestion(category, index, value, cell) {
   questionText.textContent = question.text;
   answerContent.textContent = question.answer;
 
-  if (question.special) {
-    document.querySelector(".modal-content").style.backgroundColor = "red";
-  } else {
-    document.querySelector(".modal-content").style.backgroundColor = "#DCDCDC";
-  }
+  setModalTeamColor(currentTeam);
 
   if (question.image) {
     questionImage.src = question.image;
@@ -193,6 +190,7 @@ function confirmAnswer(isCorrect) {
 function startStealFlow() {
   stealPending = true;
   stealingTeam = currentTeam === 1 ? 2 : 1;
+  setModalTeamColor(stealingTeam);
 
   stealBanner.classList.remove('hidden');
   stealUI.classList.remove('hidden');
@@ -240,17 +238,7 @@ function showOkButton() {
   okBtn.style.fontSize = "1.5rem";
   okBtn.style.padding = "10px 20px";
   okBtn.onclick = () => {
-    // limpiar estado
-    stopTimer();
-    hideStealUI();
-    stealPending = false;
-
-    modal.classList.add('hidden');
-    currentCell.classList.add("used");
-    currentTeam = currentTeam === 1 ? 2 : 1; // pasar turno
-
-    // remover el botón OK para futuras preguntas
-    okBtn.remove();
+    finishQuestion();
   };
 
   document.querySelector(".modal-content").appendChild(okBtn);
@@ -260,6 +248,27 @@ function showOkButton() {
 function hideStealUI() {
   stealBanner.classList.add('hidden');
   stealUI.classList.add('hidden');
+}
+
+function setModalTeamColor(team) {
+  // Fondos tenues: rojo para el Equipo 1 y verde para el Equipo 2.
+  modalContent.style.backgroundColor = team === 1 ? "#f8d7da" : "#d1e7dd";
+}
+
+function finishQuestion() {
+  stopTimer();
+  hideStealUI();
+  stealPending = false;
+  stealingTeam = null;
+
+  modal.classList.add('hidden');
+  if (currentCell) currentCell.classList.add("used");
+
+  const okBtn = document.getElementById('ok-btn');
+  if (okBtn) okBtn.remove();
+
+  currentTeam = currentTeam === 1 ? 2 : 1;
+  updateActiveTeam();
 }
 
 function startTimer() {
@@ -286,10 +295,8 @@ function stopTimer() {
 
 /* --- Cerrar modal manualmente --- */
 close.addEventListener("click", () => {
-  stopTimer();
-  hideStealUI();
-  stealPending = false;
-  modal.classList.add("hidden");
+  // Cerrar descarta la pregunta; se marca usada para que no pueda puntuarse otra vez.
+  finishQuestion();
 });
 function updateActiveTeam() {
   const team1 = document.querySelector('.team1');
